@@ -10,7 +10,7 @@
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
     <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm">
         <h1 class="text-2xl mb-3 text-center">Admin Login Page</h1>
-        <form action="" method="post" class="space-y-2">
+        <form action="{{ route('admin.login') }}" method="post" class="space-y-2">
             @csrf
             <div>
                 <label for="name" class="text-gray-800 mb-1 inline-block">Admin Name</label>
