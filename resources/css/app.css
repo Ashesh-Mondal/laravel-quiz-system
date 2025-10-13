@@ -10,3 +10,7 @@
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
 }
+
+.nav-links{
+    @apply text-gray-700 hover:text-blue-600 cursor-pointer transition-colors ease-in-out duration-300 text-lg
+}

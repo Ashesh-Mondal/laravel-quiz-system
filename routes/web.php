@@ -9,3 +9,5 @@ Route::get('/', function () {
 
 Route::view('/admin-login', 'admin-login');
 Route::post('/admin-login', [AdminController::class, 'login'])->name('admin.login');
+
+Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
