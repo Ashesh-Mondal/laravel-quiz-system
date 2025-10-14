@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
-use App\Models\category;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -40,9 +40,10 @@ class AdminController extends Controller
 
     public function categories()
     {
+        $categoryDetails = Category::all();
         $userDetails = Session::get('user');
         if ($userDetails) {
-            return view('categories', compact('userDetails'));
+            return view('categories', compact('userDetails', 'categoryDetails'));
         } else {
             return redirect()->route('admin.login');
         }
@@ -70,6 +71,6 @@ class AdminController extends Controller
         //     Session::flash('category', 'Category ' . $request->category . ' succesfully added');
         // }
         // return redirect()->back();
-        return back()->with('success', "Quiz for category $request->category added successfully");
+        return back()->with('success', "Quiz for category $request->category has been added successfully");
     }
 }
