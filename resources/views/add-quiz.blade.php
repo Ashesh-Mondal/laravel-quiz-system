@@ -56,28 +56,29 @@
                 <form method="get" action="" class="space-y-4">
                     <div>
                         <textarea name="question" id="" type="text" placeholder="Enter the question"
-                            class="w-full focus:outline-none py-2 px-4 border border-gray-300 focus:border-blue-500 hover:border-gray-500 transition-colors duration-300 ease-in-out rounded-lg"></textarea>
+                            class="w-full focus:outline-none py-2 px-4 border border-gray-300 focus:border-blue-500 hover:border-gray-500 transition-colors duration-300 ease-in-out rounded-lg"
+                            value="{{ old('question') }}"></textarea>
                     </div>
                     <div>
-                        <input type="text" value="{{ old('quiz') }}" name="firstOption"
+                        <input type="text" value="{{ old('firstOption') }}" name="firstOption"
                             placeholder="Enter first option"
                             class="w-full focus:outline-none py-2 px-4 border border-gray-300 focus:border-blue-500 hover:border-gray-500 transition-colors duration-300 ease-in-out rounded-lg"
                             id="">
                     </div>
                     <div>
-                        <input type="text" value="{{ old('quiz') }}" name="secondOption"
+                        <input type="text" value="{{ old('secondOption') }}" name="secondOption"
                             placeholder="Enter second option"
                             class="w-full focus:outline-none py-2 px-4 border border-gray-300 focus:border-blue-500 hover:border-gray-500 transition-colors duration-300 ease-in-out rounded-lg"
                             id="">
                     </div>
                     <div>
-                        <input type="text" value="{{ old('quiz') }}" name="thirdOption"
+                        <input type="text" value="{{ old('thirdOption') }}" name="thirdOption"
                             placeholder="Enter third option"
                             class="w-full focus:outline-none py-2 px-4 border border-gray-300 focus:border-blue-500 hover:border-gray-500 transition-colors duration-300 ease-in-out rounded-lg"
                             id="">
                     </div>
                     <div>
-                        <input type="text" value="{{ old('quiz') }}" name="fourthOption"
+                        <input type="text" value="{{ old('fourthOption') }}" name="fourthOption"
                             placeholder="Enter forth option"
                             class="w-full focus:outline-none py-2 px-4 border border-gray-300 focus:border-blue-500 hover:border-gray-500 transition-colors duration-300 ease-in-out rounded-lg"
                             id="">
