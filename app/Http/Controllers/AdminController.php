@@ -58,9 +58,10 @@ class AdminController extends Controller
     public function addCategory(Request $request)
     {
         $request->validate([
-            'category' => 'required'
+            'category' => 'required|min:3|unique:categories,name'
         ], [
-            'category.required' => 'Name of the category is required!!!'
+            'category.required' => 'Name of the category is required!!!',
+            'category.unique' => 'Category already exists'
         ]);
 
         $category = new category();
@@ -72,5 +73,12 @@ class AdminController extends Controller
         // }
         // return redirect()->back();
         return back()->with('success', "Quiz for category $request->category has been added successfully");
+    }
+
+    public function deleteCategory($id)
+    {
+        $categoryDetails = Category::find($id);
+        $categoryDetails->delete();
+        return back()->with('success', "Quiz for category $categoryDetails->name has been deleted");
     }
 }
