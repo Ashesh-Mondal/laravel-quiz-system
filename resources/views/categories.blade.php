@@ -23,7 +23,8 @@
             <form action="{{ route('add.category') }}" method="post" class="space-y-2">
                 @csrf
                 <div>
-                    <input type="text" name="category" placeholder="Enter category name"
+                    <input type="text" name="category" value="{{ old('category') }}"
+                        placeholder="Enter category name"
                         class="w-full focus:outline-none py-2 px-4 border border-gray-400 focus:border-blue-800 hover:border-gray-800 transition-colors duration-300 ease-in-out rounded-lg"
                         id="">
                     @error('category')

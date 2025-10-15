@@ -17,7 +17,7 @@
             @csrf
             <div>
                 <label for="name" class="text-gray-800 mb-1 inline-block">Username</label>
-                <input type="text" name="name" placeholder="Enter user name"
+                <input type="text" name="name" value="{{ old('name') }}" placeholder="Enter user name"
                     class="w-full focus:outline-none py-2 px-4 border rounded-lg" id="">
                 @error('name')
                     <span class="inline-block text-red-600">{{ $message }}</span>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\Category;
+use App\Models\Quiz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -80,5 +81,26 @@ class AdminController extends Controller
         $categoryDetails = Category::find($id);
         $categoryDetails->delete();
         return back()->with('success', "Quiz for category $categoryDetails->name has been deleted");
+    }
+
+    public function addQuiz()
+    {
+        $userDetails = Session::get('user');
+        $categoryListDetails = Category::all();
+        if ($userDetails) {
+            $quizName = request('quiz');
+            $category_id = request('category_id');
+            if ($quizName && $category_id && !Session::has('quizDetails')) {
+                $quiz = new Quiz();
+                $quiz->name = $quizName;
+                $quiz->category_id = $category_id;
+                if ($quiz->save()) {
+                    Session::put('quizDetails', $quiz);
+                }
+            }
+            return view('add-quiz', compact('userDetails', 'categoryListDetails'));
+        } else {
+            return redirect()->route('admin.login');
+        }
     }
 }

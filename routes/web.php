@@ -17,3 +17,5 @@ Route::get('/admin-logout', [AdminController::class, 'logout'])->name('admin.log
 Route::post('/add-category', [AdminController::class, 'addCategory'])->name('add.category');
 
 Route::get('/{id}/delete-category', [AdminController::class, 'deleteCategory'])->name('delete.category');
+
+Route::get('/add-quiz', [AdminController::class, 'addQuiz'])->name('add.quiz');
