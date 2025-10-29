@@ -108,6 +108,14 @@ class AdminController extends Controller
 
     public function addMCQs(Request $request)
     {
+        $request->validate([
+            'question' => 'required|min:5',
+            'a' => 'required',
+            'b' => 'required',
+            'c' => 'required',
+            'd' => 'required',
+            'correct_ans' => 'required'
+        ]);
         $mcq = new Mcq();
         $mcq->question = $request->question;
         $mcq->a = $request->a;
@@ -129,5 +137,11 @@ class AdminController extends Controller
                 return redirect()->route('admin.categories');
             }
         }
+    }
+
+    public function exitMCQs()
+    {
+        Session::forget('quizDetails');
+        return redirect()->route('admin.categories');
     }
 }

@@ -20,3 +20,5 @@ Route::get('/{id}/delete-category', [AdminController::class, 'deleteCategory'])-
 
 Route::get('/add-quiz', [AdminController::class, 'addQuiz'])->name('add.quiz');
 Route::post('/add-mcqs', [AdminController::class, 'addMCQs'])->name('add.mcqs');
+
+Route::get('/exit-mcqs', [AdminController::class, 'exitMCQs'])->name('exit.mcqs');
