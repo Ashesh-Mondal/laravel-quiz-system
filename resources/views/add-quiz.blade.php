@@ -53,38 +53,39 @@
                 <span class="text-green-500 font-bold mb-3 inline-block">Quiz :
                     {{ Session::get('quizDetails')->name }}</span>
                 <h1 class="text-2xl mb-5 text-center text-gray-800">Add MCQs</h1>
-                <form method="get" action="" class="space-y-4">
+                <form method="post" action="{{ route('add.mcqs') }}" class="space-y-4">
+                    @csrf
                     <div>
                         <textarea name="question" id="" type="text" placeholder="Enter the question"
                             class="w-full focus:outline-none py-2 px-4 border border-gray-300 focus:border-blue-500 hover:border-gray-500 transition-colors duration-300 ease-in-out rounded-lg"
                             value="{{ old('question') }}"></textarea>
                     </div>
                     <div>
-                        <input type="text" value="{{ old('firstOption') }}" name="firstOption"
+                        <input type="text" value="{{ old('a') }}" name="a"
                             placeholder="Enter first option"
                             class="w-full focus:outline-none py-2 px-4 border border-gray-300 focus:border-blue-500 hover:border-gray-500 transition-colors duration-300 ease-in-out rounded-lg"
                             id="">
                     </div>
                     <div>
-                        <input type="text" value="{{ old('secondOption') }}" name="secondOption"
+                        <input type="text" value="{{ old('b') }}" name="b"
                             placeholder="Enter second option"
                             class="w-full focus:outline-none py-2 px-4 border border-gray-300 focus:border-blue-500 hover:border-gray-500 transition-colors duration-300 ease-in-out rounded-lg"
                             id="">
                     </div>
                     <div>
-                        <input type="text" value="{{ old('thirdOption') }}" name="thirdOption"
+                        <input type="text" value="{{ old('c') }}" name="c"
                             placeholder="Enter third option"
                             class="w-full focus:outline-none py-2 px-4 border border-gray-300 focus:border-blue-500 hover:border-gray-500 transition-colors duration-300 ease-in-out rounded-lg"
                             id="">
                     </div>
                     <div>
-                        <input type="text" value="{{ old('fourthOption') }}" name="fourthOption"
+                        <input type="text" value="{{ old('d') }}" name="d"
                             placeholder="Enter forth option"
                             class="w-full focus:outline-none py-2 px-4 border border-gray-300 focus:border-blue-500 hover:border-gray-500 transition-colors duration-300 ease-in-out rounded-lg"
                             id="">
                     </div>
                     <div>
-                        <select type="text" name="options"
+                        <select type="text" name="correct_ans"
                             class="mt-2 w-full focus:outline-none py-2 px-4 border border-gray-300 focus:border-blue-500 hover:border-gray-500 transition-colors duration-300 ease-in-out rounded-lg"
                             id="">
                             <option value="">Select Correct Option</option>
@@ -98,13 +99,13 @@
                         @enderror
                     </div>
                     <div class="flex justify-center items-center">
-                        <button type="submit"
+                        <button type="submit" name="submit" value="add-more"
                             class="py-2 rounded-xl bg-blue-300 text-blue-900 hover:bg-blue-800 hover:text-white cursor-pointer mt-4 w-full transition-all ease-in-out duration-300">
                             Add More
                         </button>
                     </div>
                     <div class="flex justify-center items-center">
-                        <button type="submit"
+                        <button type="submit" name="submit" value="done"
                             class="py-2 rounded-xl bg-green-300 text-green-900 hover:bg-green-800 hover:text-white cursor-pointer w-full transition-all ease-in-out duration-300">
                             Add and Submit
                         </button>
