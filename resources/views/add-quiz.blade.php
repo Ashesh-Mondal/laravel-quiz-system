@@ -25,9 +25,6 @@
                             placeholder="Enter Quiz name"
                             class="w-full focus:outline-none py-2 px-4 border border-gray-400 focus:border-blue-800 hover:border-gray-800 transition-colors duration-300 ease-in-out rounded-lg"
                             id="">
-                        @error('quiz')
-                            <span class="text-red-600 inline-block mt-1 ml-1">{{ $message }}</span>
-                        @enderror
                     </div>
                     <div>
                         <select type="text" name="category_id"
@@ -38,9 +35,6 @@
                                 <option value="{{ $categoryList->id }}">{{ $categoryList->name }}</option>
                             @endforeach
                         </select>
-                        @error('category')
-                            <span class="text-red-600 inline-block mt-1 ml-1">{{ $message }}</span>
-                        @enderror
                     </div>
                     <div class="flex justify-center items-center">
                         <button type="submit"
@@ -53,6 +47,13 @@
             @else
                 <span class="text-green-500 font-bold mb-3 inline-block">Quiz :
                     {{ Session::get('quizDetails')->name }}</span>
+                <p class="text-green-500 font-bold mb-3">
+                    Total MCQs : {{ $totalMCQs }}
+                    @if ($totalMCQs > 0)
+                        <a class="text-blue-400 hover:text-blue-600 transition-all delay-100 ease-in-out"
+                            href="{{ route('show.quiz', ['id'=>Session::get('quizDetails')->id]) }}">Show MCQs</a>
+                    @endif
+                </p>
                 <h1 class="text-2xl mb-5 text-center text-gray-800">Add MCQs</h1>
                 <form method="post" action="{{ route('add.mcqs') }}" class="space-y-4">
                     @csrf
