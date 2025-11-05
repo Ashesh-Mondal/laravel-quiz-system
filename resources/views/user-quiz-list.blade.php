@@ -18,6 +18,7 @@
                 <ul class="flex py-3 text-center font-bold">
                     <li class="w-30">S. No</li>
                     <li class="w-full text-left ml-3">Name</li>
+                    <li class="w-30 mr-3">Total Question</li>
                     <li class="w-30">Action</li>
                 </ul>
             </li>
@@ -27,6 +28,7 @@
                         {{-- Laravel automatically provides a $loop variable inside @foreach. --}}
                         <li class="w-30">{{ $loop->iteration }}</li>
                         <li class="text-left w-full ml-3">{{ $quiz->name }}</li>
+                        <li class="w-30 mr-3">{{ $quiz->mcq_count }}</li>
                         <li class="w-30 flex justify-center">
                             <a href="" class="text-green-600 font-bold text-lg">Start</a>
                         </li>
