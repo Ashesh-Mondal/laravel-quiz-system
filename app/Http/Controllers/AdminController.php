@@ -155,12 +155,23 @@ class AdminController extends Controller
         return redirect()->route('admin.categories');
     }
 
-    public function showQuiz($id)
+    public function showQuiz($id, $name)
     {
         $userDetails = Session::get('user');
         $mcqs = Mcq::where('quiz_id', $id)->get();
         if ($userDetails) {
-            return view('show-quiz', compact('mcqs', 'userDetails'));
+            return view('show-quiz', compact('mcqs', 'userDetails', 'name'));
+        } else {
+            return redirect()->route('admin.login');
+        }
+    }
+
+    public function quizList($id, $name)
+    {
+        $userDetails = Session::get('user');
+        if ($userDetails) {
+            $quizDetails = Quiz::with('mcq')->where('category_id', $id)->get();
+            return view('quiz-list', compact('quizDetails', 'userDetails', 'name'));
         } else {
             return redirect()->route('admin.login');
         }

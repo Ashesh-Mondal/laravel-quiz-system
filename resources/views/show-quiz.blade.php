@@ -1,20 +1,3 @@
-{{-- <ol>
-    @foreach ($mcqs as $mcq)
-        <li>
-            {{ $mcq->question }}
-            <ol type="a">
-
-                <li>{{ $mcq->a }}</li>
-                <li>{{ $mcq->b }}</li>
-                <li>{{ $mcq->c }}</li>
-                <li>{{ $mcq->d }}</li>
-
-            </ol>
-        </li>
-    @endforeach
-</ol> --}}
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +16,7 @@
     @endif
     <div class="flex justify-center pt-10">
         <h1 class="text-2xl mb-5 text-center text-gray-800">
-            All Current Quiz's MCQs
+            Quiz Name : {{ $name }}
             <a class="text-blue-400 hover:text-blue-600 transition-all delay-100 ease-in-out text-lg"
                 href="{{ route('add.quiz') }}">Back</a>
         </h1>
