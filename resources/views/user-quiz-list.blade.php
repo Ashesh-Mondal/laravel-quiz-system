@@ -30,7 +30,8 @@
                         <li class="text-left w-full ml-3">{{ $quiz->name }}</li>
                         <li class="w-30 mr-3">{{ $quiz->mcq_count }}</li>
                         <li class="w-30 flex justify-center">
-                            <a href="" class="text-green-600 font-bold text-lg">Start</a>
+                            <a href="{{ route('start.quiz', ['id' => $quiz->id]) }}"
+                                class="text-green-600 font-bold text-lg">Start</a>
                         </li>
                     </ul>
                 </li>
