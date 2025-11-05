@@ -24,3 +24,4 @@ Route::get('/quiz-list/{id}/{name}', [AdminController::class, 'quizList'])->name
 
 
 Route::get('/', [UserController::class, 'welcome']);
+Route::get('/user-quiz-list/{id}', [UserController::class, 'userQuizList'])->name('show.quiz.list');

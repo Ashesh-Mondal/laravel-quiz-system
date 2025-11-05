@@ -32,6 +32,7 @@
                 <ul class="flex justify-between py-3 text-center font-bold">
                     <li class="w-30">S. No</li>
                     <li class="w-70">Name</li>
+                    <li class="w-30">Total Quiz</li>
                     <li class="w-30">Action</li>
                 </ul>
             </li>
@@ -41,8 +42,9 @@
                         {{-- Laravel automatically provides a $loop variable inside @foreach. --}}
                         <li class="w-30">{{ $loop->iteration }}</li>
                         <li class="w-70">{{ $singleCategory->name }}</li>
+                        <li class="w-30">{{ $singleCategory->quiz->count() }}</li>
                         <li class="w-30 flex gap-4 justify-center">
-                            <a href="#">
+                            <a href="{{ route('show.quiz.list', ['id' => $singleCategory->id]) }}">
                                 <svg class="cursor-pointer inline-block text-center" xmlns="http://www.w3.org/2000/svg"
                                     height="20px" viewBox="0 -960 960 960" width="20px" fill="#177eee">
                                     <path
