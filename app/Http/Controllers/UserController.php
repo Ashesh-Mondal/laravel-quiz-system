@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Quiz;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -31,8 +34,17 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|min:3',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'password' => 'required|min:3|confirmed' //* The password field must have a matching field named password_confirmation, and both must contain the same value.
         ], ['password.confirmed' => 'Password and Confirm Password does not match']);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        if ($user->save()) {
+            Session::put('user', $user);
+            return redirect('/');
+        }
     }
 }
