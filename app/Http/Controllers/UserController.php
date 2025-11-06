@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Mcq;
 use App\Models\Quiz;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,8 +27,8 @@ class UserController extends Controller
 
     public function startQuiz($id)
     {
-        $quizName = Quiz::with(['category', 'mcq'])->where('id', $id)->first();
-        return view('start-quiz', compact('quizName'));
+        $quizData = Quiz::with(['category', 'mcq'])->where('id', $id)->first();
+        return view('start-quiz', compact('quizData'));
     }
 
     public function userSignup(Request $request)
@@ -94,5 +95,11 @@ class UserController extends Controller
         $previousUrl = url()->previous();
         Session::put('startQuizUrl', $previousUrl);
         return view('user-login');
+    }
+
+    public function mcq($id, $name)
+    {
+        $mcq = Mcq::where('quiz_id', $id)->get();
+        return view('mcq-page', compact('mcq', 'name'));
     }
 }

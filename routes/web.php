@@ -33,3 +33,4 @@ Route::get('/user-signup-quiz', [UserController::class, 'userSignupQuiz'])->name
 Route::view('/user-login', 'user-login');
 Route::post('/user-login', [UserController::class, 'userLogin'])->name('user.login');
 Route::get('/user-login-quiz', [UserController::class, 'userLoginQuiz'])->name('user.login.quiz');
+Route::get('/mcq/{id}/{name}',[UserController::class, 'mcq'])->name('mcq.page');

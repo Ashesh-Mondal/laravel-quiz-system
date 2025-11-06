@@ -11,14 +11,14 @@
 
 <body>
     <x-user-navbar></x-user-navbar>
-    <h1 class="mt-15 pb-5 text-4xl text-green-800 text-center font-bold">{{ $quizName->name }}</h1>
+    <h1 class="mt-15 pb-5 text-4xl text-green-800 text-center font-bold">{{ $quizData->name }}</h1>
     <p class="text-center font-bold text-green-800 text-2xl mt-5">
-        This quiz contains {{ $quizName->mcq->count() }} Questions and no limit to attempt this Quiz
+        This quiz contains {{ $quizData->mcq->count() }} Questions and no limit to attempt this Quiz
     </p>
     <p class="text-center font-bold text-green-800 text-3xl mt-8">Good Luck</p>
     @if (Session::has('normalUser'))
         <div class="flex justify-center mt-20">
-            <a href="#" type="submit"
+            <a href="{{ route('mcq.page', ['id' => $quizData->id, 'name' => $quizData->name]) }}" type="submit"
                 class="text-xl py-2 rounded-xl bg-blue-300 text-blue-900 hover:bg-blue-800 hover:text-white cursor-pointer transition-all ease-in-out duration-300 px-5">
                 Start Quiz
             </a>
