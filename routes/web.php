@@ -28,3 +28,5 @@ Route::get('/user-quiz-list/{id}', [UserController::class, 'userQuizList'])->nam
 Route::view('/user-signup', 'user-signup');
 Route::post('/user-signup', [UserController::class, 'userSignup'])->name('user.signup');
 Route::get('/start-quiz/{id}', [UserController::class, 'startQuiz'])->name('start.quiz');
+Route::get('/logout-user', [UserController::class, 'logoutUser'])->name('logout.user');
+Route::get('/user-signup-quiz', [UserController::class, 'userSignupQuiz'])->name('user.signup.quiz');

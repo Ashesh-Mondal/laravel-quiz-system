@@ -44,7 +44,27 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         if ($user->save()) {
             Session::put('normalUser', $user);
-            return redirect('/');
+            // this if condition is used so that when a user is doing signup/login from the quiz section then after after getting signedup/logedin the user will get redirected back to the same quiz section
+            if (Session::has('startQuizUrl')) {
+                $url = Session::get('startQuizUrl');
+                Session::forget('startQuizUrl');
+                return redirect($url);
+            } else {
+                return redirect('/');
+            }
         }
+    }
+
+    public function logoutUser()
+    {
+        Session::forget('normalUser');
+        return redirect('/');
+    }
+
+    public function userSignupQuiz()
+    {
+        $previousUrl = url()->previous();
+        Session::put('startQuizUrl', $previousUrl);
+        return view('user-signup');
     }
 }

@@ -16,12 +16,21 @@
         This quiz contains {{ $quizName->mcq->count() }} Questions and no limit to attempt this Quiz
     </p>
     <p class="text-center font-bold text-green-800 text-3xl mt-8">Good Luck</p>
-    <div class="flex justify-center mt-20">
-        <a href="{{ route('user.signup') }}" type="submit"
-            class="text-xl py-2 rounded-xl bg-blue-300 text-blue-900 hover:bg-blue-800 hover:text-white cursor-pointer transition-all ease-in-out duration-300 px-5">
-            Login/SignUp for Start Quiz
-        </a>
-    </div>
+    @if (Session::has('normalUser'))
+        <div class="flex justify-center mt-20">
+            <a href="{{ route('user.signup') }}" type="submit"
+                class="text-xl py-2 rounded-xl bg-blue-300 text-blue-900 hover:bg-blue-800 hover:text-white cursor-pointer transition-all ease-in-out duration-300 px-5">
+                Start Quiz
+            </a>
+        </div>
+    @else
+        <div class="flex justify-center mt-20">
+            <a href="{{ route('user.signup.quiz') }}" type="submit"
+                class="text-xl py-2 rounded-xl bg-blue-300 text-blue-900 hover:bg-blue-800 hover:text-white cursor-pointer transition-all ease-in-out duration-300 px-5">
+                Login/SignUp for Start Quiz
+            </a>
+        </div>
+    @endif
 </body>
 
 </html>
