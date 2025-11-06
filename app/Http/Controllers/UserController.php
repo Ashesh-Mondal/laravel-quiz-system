@@ -43,7 +43,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         if ($user->save()) {
-            Session::put('user', $user);
+            Session::put('normalUser', $user);
             return redirect('/');
         }
     }
