@@ -30,3 +30,6 @@ Route::post('/user-signup', [UserController::class, 'userSignup'])->name('user.s
 Route::get('/start-quiz/{id}', [UserController::class, 'startQuiz'])->name('start.quiz');
 Route::get('/logout-user', [UserController::class, 'logoutUser'])->name('logout.user');
 Route::get('/user-signup-quiz', [UserController::class, 'userSignupQuiz'])->name('user.signup.quiz');
+Route::view('/user-login', 'user-login');
+Route::post('/user-login', [UserController::class, 'userLogin'])->name('user.login');
+Route::get('/user-login-quiz', [UserController::class, 'userLoginQuiz'])->name('user.login.quiz');

@@ -18,16 +18,20 @@
     <p class="text-center font-bold text-green-800 text-3xl mt-8">Good Luck</p>
     @if (Session::has('normalUser'))
         <div class="flex justify-center mt-20">
-            <a href="{{ route('user.signup') }}" type="submit"
+            <a href="#" type="submit"
                 class="text-xl py-2 rounded-xl bg-blue-300 text-blue-900 hover:bg-blue-800 hover:text-white cursor-pointer transition-all ease-in-out duration-300 px-5">
                 Start Quiz
             </a>
         </div>
     @else
-        <div class="flex justify-center mt-20">
+        <div class="flex flex-col gap-8 w-1/4 m-auto text-center item-center mt-20">
             <a href="{{ route('user.signup.quiz') }}" type="submit"
                 class="text-xl py-2 rounded-xl bg-blue-300 text-blue-900 hover:bg-blue-800 hover:text-white cursor-pointer transition-all ease-in-out duration-300 px-5">
-                Login/SignUp for Start Quiz
+                SignUp for Start Quiz
+            </a>
+            <a href="{{ route('user.login.quiz') }}" type="submit"
+                class="text-xl py-2 rounded-xl bg-blue-300 text-blue-900 hover:bg-blue-800 hover:text-white cursor-pointer transition-all ease-in-out duration-300 px-5">
+                Login for Start Quiz
             </a>
         </div>
     @endif

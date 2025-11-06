@@ -12,7 +12,7 @@
                 <a class="user-nav-links" href="{{ route('logout.user') }}">Logout</a>
             @else
                 <a class="user-nav-links" href="/user-signup">SignUp</a>
-                <a class="user-nav-links" href="">Login</a>
+                <a class="user-nav-links" href="/user-login">Login</a>
             @endif
             <a class="user-nav-links" href="{{ route('admin.logout') }}">Blog</a>
         </div>
