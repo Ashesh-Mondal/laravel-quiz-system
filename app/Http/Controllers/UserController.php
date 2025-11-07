@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Mcq;
+use App\Models\McqRecord;
 use App\Models\Quiz;
 use App\Models\Record;
 use App\Models\User;
@@ -110,6 +111,7 @@ class UserController extends Controller
             $currentQuiz['currentMcq'] = 1;
             $currentQuiz['totalMcq'] = $mcq->count();
             $currentQuiz['quizName'] = $name;
+            $currentQuiz['recordId'] = $record->id;
             $currentQuiz['quizId'] = $id;
             Session::put('currentQuiz', $currentQuiz);
             return view('mcq-page', compact('mcqData', 'name'));
@@ -118,9 +120,21 @@ class UserController extends Controller
         }
     }
 
-    public function submitAndNext($mcqId)
+    public function submitAndNext(Request $request, $mcqId)
     {
         $currentQuiz = Session::get('currentQuiz');
+        $mcqRecord = new McqRecord();
+        $mcqRecord->record_id = $currentQuiz['recordId'];
+        $mcqRecord->user_id = Session::get('normalUser')->id;
+        $mcqRecord->mcq_id = $mcqId;
+        $mcqRecord->select_answer = $request->option;
+        $request->option == Mcq::find($mcqId)->correct_ans;
+        if ($request->option == Mcq::find($mcqId)->correct_ans) {
+            $mcqRecord->is_correct = 1;
+        } else {
+            $mcqRecord->is_correct = 0;
+        }
+        $mcqRecord->save();
         if ($currentQuiz['currentMcq'] < $currentQuiz['totalMcq']) {
             $currentQuiz['currentMcq'] += 1;
             $name = $currentQuiz['quizName'];

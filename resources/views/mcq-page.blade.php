@@ -20,19 +20,19 @@
         <form action="{{ route('submit.and.next', ['id' => $mcqData->id]) }}" method="post">
             @csrf
             <label for="a" class="mcq-options">
-                <input type="radio" name="option" id="a" class="form-radio text-blue-500">
+                <input type="radio" name="option" id="a" class="form-radio text-blue-500" value="a">
                 <span class="">{{ $mcqData->a }}</span>
             </label>
             <label for="b" class="mcq-options">
-                <input type="radio" name="option" id="b" class="form-radio text-blue-500">
+                <input type="radio" name="option" id="b" class="form-radio text-blue-500" value="b">
                 <span class="">{{ $mcqData->b }}</span>
             </label>
             <label for="c" class="mcq-options">
-                <input type="radio" name="option" id="c" class="form-radio text-blue-500">
+                <input type="radio" name="option" id="c" class="form-radio text-blue-500" value="c">
                 <span class="">{{ $mcqData->c }}</span>
             </label>
             <label for="d" class="mcq-options">
-                <input type="radio" name="option" id="d" class="form-radio text-blue-500">
+                <input type="radio" name="option" id="d" class="form-radio text-blue-500" value="d">
                 <span class="">{{ $mcqData->d }}</span>
             </label>
             <button
