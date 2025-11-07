@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Mcq;
 use App\Models\Quiz;
+use App\Models\Record;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -101,13 +102,20 @@ class UserController extends Controller
     {
         $mcq = Mcq::where('quiz_id', $id)->get();
         $mcqData = $mcq[0];
-        $currentQuiz = [];
-        $currentQuiz['currentMcq'] = 1;
-        $currentQuiz['totalMcq'] = $mcq->count();
-        $currentQuiz['quizName'] = $name;
-        $currentQuiz['quizId'] = $id;
-        Session::put('currentQuiz', $currentQuiz);
-        return view('mcq-page', compact('mcqData', 'name'));
+        $record = new Record();
+        $record->user_id = Session::get('normalUser')->id;
+        $record->quiz_id = $id;
+        if ($record->save()) {
+            $currentQuiz = [];
+            $currentQuiz['currentMcq'] = 1;
+            $currentQuiz['totalMcq'] = $mcq->count();
+            $currentQuiz['quizName'] = $name;
+            $currentQuiz['quizId'] = $id;
+            Session::put('currentQuiz', $currentQuiz);
+            return view('mcq-page', compact('mcqData', 'name'));
+        } else {
+            return "Something went wrong";
+        }
     }
 
     public function submitAndNext($mcqId)
