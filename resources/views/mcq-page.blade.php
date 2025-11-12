@@ -17,10 +17,11 @@
         </h2>
         <h2 class="pb-5 text-xl text-green-800 text-center font-bold">{{ session('currentQuiz.currentMcq') }} of
             {{ session('currentQuiz.totalMcq') }}</h2>
-        <div class="mt-2 p-4 bg-white w-1/3 shadow-2xl m-auto rounded-xl text-xl mb-10">
+        <div class="mt-2 p-4 bg-white w-1/3 shadow-2xl m-auto rounded-xl text-xl">
             <h3 class="my-2 font-bold">Q.{{ session('currentQuiz.currentMcq') }} {{ $mcqData->question }}</h3>
             <form action="{{ route('submit.and.next', ['id' => $mcqData->id]) }}" method="post">
                 @csrf
+                <input type="hidden" name="mcq_id" value="{{ $mcqData->id }}">
                 <label for="a" class="mcq-options">
                     <input type="radio" name="option" id="a" class="form-radio text-blue-500" value="a">
                     <span class="">{{ $mcqData->a }}</span>
