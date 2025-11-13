@@ -8,7 +8,8 @@
             <a class="user-nav-links" href="{{ route('admin.categories') }}">Category</a>
 
             @if (Session::has('normalUser'))
-                <a class="user-nav-links" href="">Welcome {{ Session::get('normalUser')->name }}</a>
+                <a class="user-nav-links" href="{{ route('user.details') }}">Welcome
+                    {{ Session::get('normalUser')->name }}</a>
                 <a class="user-nav-links" href="{{ route('logout.user') }}">Logout</a>
             @else
                 <a class="user-nav-links" href="/user-signup">SignUp</a>

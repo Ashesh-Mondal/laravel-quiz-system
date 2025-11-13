@@ -148,9 +148,20 @@ class UserController extends Controller
             Session::put('currentQuiz', $currentQuiz);
             return view('mcq-page', compact('mcqData', 'name'));
         } else {
+            $record = Record::find($currentQuiz['recordId']);
+            if ($record) {
+                $record->status = '2';
+                $record->update();
+            }
             $quizResult = McqRecord::WithMCQ()->where('record_id', $currentQuiz['recordId'])->get();
             $correctAnsCount = McqRecord::where([['record_id', '=', $currentQuiz['recordId']], ['is_correct', '=', 1]])->count();
             return view('quiz-result', compact('quizResult', 'correctAnsCount'));
         }
+    }
+
+    public function userDetails()
+    {
+        $userDetails = Record::with('quiz')->where('user_id', '=', Session::get('normalUser')->id)->get();
+        return view('user-details', compact('userDetails'));
     }
 }
