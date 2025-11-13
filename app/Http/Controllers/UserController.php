@@ -164,4 +164,11 @@ class UserController extends Controller
         $userDetails = Record::with('quiz')->where('user_id', '=', Session::get('normalUser')->id)->get();
         return view('user-details', compact('userDetails'));
     }
+
+    public function searchQuiz(Request $request)
+    {
+        $search = $request->search;
+        $quizList = Quiz::withCount('mcq')->where('name', 'LIKE', '%' . $search . '%')->get();
+        return view('quiz-search', compact('quizList', 'search'));
+    }
 }
