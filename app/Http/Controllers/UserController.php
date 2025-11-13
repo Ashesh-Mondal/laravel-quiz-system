@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\VerifyUser;
 use App\Models\Category;
 use App\Models\Mcq;
 use App\Models\McqRecord;
@@ -9,7 +10,9 @@ use App\Models\Quiz;
 use App\Models\Record;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -45,6 +48,15 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+
+        // Code for sending Verify Email
+
+        $link = Crypt::encryptString($user->email);
+        $link = url("/verify-user/" . $link);
+        Mail::to($user->email)->send(new VerifyUser($link));
+
+        //
+
         if ($user->save()) {
             Session::put('normalUser', $user);
             // this if condition is used so that when a user is doing signup/login from the quiz section then after after getting signedup/logedin the user will get redirected back to the same quiz section
@@ -170,5 +182,17 @@ class UserController extends Controller
         $search = $request->search;
         $quizList = Quiz::withCount('mcq')->where('name', 'LIKE', '%' . $search . '%')->get();
         return view('quiz-search', compact('quizList', 'search'));
+    }
+
+    public function verifyUser($email)
+    {
+        $orgEmail = Crypt::decryptString($email);
+        $user = User::where('email', $orgEmail)->first();
+        if ($user) {
+            $user->active = '2';
+            if ($user->save()) {
+                return redirect('/');
+            }
+        }
     }
 }

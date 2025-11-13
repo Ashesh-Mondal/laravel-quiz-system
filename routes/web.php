@@ -36,6 +36,7 @@ Route::view('/user-login', 'user-login');
 Route::post('/user-login', [UserController::class, 'userLogin'])->name('user.login');
 Route::get('/user-login-quiz', [UserController::class, 'userLoginQuiz'])->name('user.login.quiz');
 Route::get('/search-quiz', [UserController::class, 'searchQuiz'])->name('search.quiz');
+Route::get('/verify-user/{email}', [UserController::class, 'verifyUser']);
 
 Route::middleware('CheckUserAuth')->group(function () {
     Route::get('/mcq/{id}/{name}', [UserController::class, 'mcq'])->name('mcq.page');
