@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\CheckAdminAuth;
 use App\Http\Middleware\CheckUserAuth;
+use App\Http\Middleware\RedirectIfLoggedIn;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -18,6 +19,9 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
         $middleware->appendToGroup('CheckAdminAuth', [
             CheckAdminAuth::class
+        ]);
+        $middleware->appendToGroup('RedirectIfLoggedIn', [
+            RedirectIfLoggedIn::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
