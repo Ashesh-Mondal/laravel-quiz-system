@@ -21,7 +21,7 @@
     <p class="text-center font-bold text-green-800 text-3xl mt-8">Good Luck</p>
     @if (Session::has('normalUser'))
         <div class="flex justify-center mt-20">
-            <a href="{{ route('mcq.page', ['id' => $quizData->id, 'name' => $quizData->name]) }}" type="submit"
+            <a href="{{ route('mcq.page', ['id' => $quizData->id, 'name' => Str::slug($quizData->name)]) }}" type="submit"
                 class="text-xl py-2 rounded-xl bg-blue-300 text-blue-900 hover:bg-blue-800 hover:text-white cursor-pointer transition-all ease-in-out duration-300 px-5">
                 Start Quiz
             </a>

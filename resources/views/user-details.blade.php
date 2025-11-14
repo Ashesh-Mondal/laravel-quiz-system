@@ -15,7 +15,7 @@
         <h1 class="text-4xl text-green-700 font-bold text-center mt-18 mb-8">User Details</h1>
         <div class="w-200 flex justify-center m-auto flex-col space-y-5">
             <h1 class="text-3xl text-green-700 text-center font-bold">Attempted Quiz</h1>
-            <ul class="border border-gray-200 rounded-xl">
+            <ul class="border border-gray-200 rounded-xl mb-8">
                 <li>
                     <ul class="flex justify-between py-3 text-center font-bold">
                         <li class="w-30">S. No</li>
@@ -34,13 +34,6 @@
                             @elseif($userDetail->status == '1')
                                 <li class="w-40 text-orange-600 text-left">Not Completed</li>
                             @endif
-                            {{-- <li class="w-30 flex gap-4 justify-center">
-                                @if ($result->is_correct)
-                                    <span class="text-green-600">Correct</span>
-                                @else
-                                    <span class="text-red-600">Incorrect</span>
-                                @endif
-                            </li> --}}
                         </ul>
                     </li>
                 @endforeach

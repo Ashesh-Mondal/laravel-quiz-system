@@ -27,12 +27,26 @@ Route::middleware('CheckAdminAuth')->group(function () {
 
 Route::get('/', [UserController::class, 'welcome']);
 Route::get('/user-quiz-list/{id}', [UserController::class, 'userQuizList'])->name('show.quiz.list');
-Route::view('/user-signup', 'user-signup');
+// Route::view('/user-signup', 'user-signup');
+Route::get('/user-signup', function () {
+    if (!session()->has('normalUser')) {
+        return view('user-signup');
+    } else {
+        return redirect('/');
+    }
+});
 Route::post('/user-signup', [UserController::class, 'userSignup'])->name('user.signup');
 Route::get('/start-quiz/{id}', [UserController::class, 'startQuiz'])->name('start.quiz');
 Route::get('/logout-user', [UserController::class, 'logoutUser'])->name('logout.user');
 Route::get('/user-signup-quiz', [UserController::class, 'userSignupQuiz'])->name('user.signup.quiz');
-Route::view('/user-login', 'user-login');
+// Route::view('/user-login', 'user-login');
+Route::get('/user-login', function () {
+    if (!session()->has('normalUser')) {
+        return view('user-login');
+    } else {
+        return redirect('/');
+    }
+});
 Route::post('/user-login', [UserController::class, 'userLogin'])->name('user.login');
 Route::get('/user-login-quiz', [UserController::class, 'userLoginQuiz'])->name('user.login.quiz');
 Route::get('/search-quiz', [UserController::class, 'searchQuiz'])->name('search.quiz');

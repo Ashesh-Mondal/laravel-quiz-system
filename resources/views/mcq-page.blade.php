@@ -12,7 +12,7 @@
 <body class="bg-gray-100">
     <x-user-navbar></x-user-navbar>
     <div class="min-h-screen">
-        <h1 class="mt-15 pb-5 text-4xl text-green-800 text-center font-bold">{{ $name }}</h1>
+        <h1 class="mt-15 pb-5 text-4xl text-green-800 text-center font-bold">{{(str_replace("-", " ", ucwords($name))) }}</h1>
         <h2 class="pb-5 text-2xl text-green-800 text-center font-bold">Total MCQ: {{ session('currentQuiz.totalMcq') }}
         </h2>
         <h2 class="pb-5 text-xl text-green-800 text-center font-bold">{{ session('currentQuiz.currentMcq') }} of
