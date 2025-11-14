@@ -31,7 +31,7 @@
                 </div>
             </form>
         </div>
-        <h1 class="text-4xl text-green-700 font-bold text-center mt-18">Category List</h1>
+        <h1 class="text-4xl text-green-700 font-bold text-center mt-18">Top Categories</h1>
         <div class="w-200 flex justify-center m-auto flex-col my-10">
             <ul class="border border-gray-200 rounded-xl">
                 <li>
@@ -58,6 +58,33 @@
                                             d="M480-312q70 0 119-49t49-119q0-70-49-119t-119-49q-70 0-119 49t-49 119q0 70 49 119t119 49Zm0-72q-40 0-68-28t-28-68q0-40 28-68t68-28q40 0 68 28t28 68q0 40-28 68t-68 28Zm0 192q-142.6 0-259.8-78.5Q103-349 48-480q55-131 172.2-209.5Q337.4-768 480-768q142.6 0 259.8 78.5Q857-611 912-480q-55 131-172.2 209.5Q622.6-192 480-192Zm0-288Zm0 216q112 0 207-58t146-158q-51-100-146-158t-207-58q-112 0-207 58T127-480q51 100 146 158t207 58Z" />
                                     </svg>
                                 </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+        <h1 class="text-4xl text-green-700 font-bold text-center mt-18">Top Quizzes</h1>
+        <div class="w-200 flex justify-center m-auto flex-col my-10">
+            <ul class="border border-gray-200 rounded-xl">
+                <li>
+                    <ul class="flex py-3 text-center font-bold">
+                        <li class="w-30">S. No</li>
+                        <li class="w-full text-left ml-3">Name</li>
+                        <li class="w-30 mr-3">Total Question</li>
+                        <li class="w-30">Action</li>
+                    </ul>
+                </li>
+                @foreach ($quizList as $quiz)
+                    <li class="even:bg-gray-200">
+                        <ul class="flex py-3 text-center">
+                            {{-- Laravel automatically provides a $loop variable inside @foreach. --}}
+                            <li class="w-30">{{ $loop->iteration }}</li>
+                            <li class="text-left w-full ml-3">{{ $quiz->name }}</li>
+                            <li class="w-30 mr-3">{{ $quiz->mcq_count }}</li>
+                            <li class="w-30 flex justify-center">
+                                <a href="{{ route('start.quiz', ['id' => $quiz->id]) }}"
+                                    class="text-green-600 font-bold text-lg">Start</a>
                             </li>
                         </ul>
                     </li>

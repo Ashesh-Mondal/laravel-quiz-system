@@ -20,8 +20,9 @@ class UserController extends Controller
 {
     public function welcome()
     {
-        $categoryList = Category::with('quiz')->latest()->take(8)->get();
-        return view('welcome', compact('categoryList'));
+        $categoryList = Category::withCount('quiz')->with('quiz')->orderBy('quiz_count', "desc")->take(5)->get();
+        $quizList = Quiz::withCount('record')->withCount("mcq")->orderBy("record_count", "desc")->take(5)->get();
+        return view('welcome', compact('categoryList', 'quizList'));
     }
 
     public function userQuizList($id)
@@ -202,7 +203,7 @@ class UserController extends Controller
         $link = Crypt::encryptString($request->email);
         $link = url("/user-forgot-password/" . $link);
         Mail::to($request->email)->send(new UserForgotPassword($link));
-        return redirect('/')->with("message-success" , "A password reset link has been emailed to you. Please check your inbox");
+        return redirect('/')->with("message-success", "A password reset link has been emailed to you. Please check your inbox");
     }
 
     public function userResetForgotPassword($email)
