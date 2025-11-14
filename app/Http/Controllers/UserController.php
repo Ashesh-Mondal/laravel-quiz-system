@@ -64,9 +64,9 @@ class UserController extends Controller
             if (Session::has('startQuizUrl')) {
                 $url = Session::get('startQuizUrl');
                 Session::forget('startQuizUrl');
-                return redirect($url);
+                return redirect($url)->with('message-success', "User registered successfully, please check email to verify user");
             } else {
-                return redirect('/');
+                return redirect('/')->with('message-success', "User registered successfully, please check email to verify user");
             }
         }
     }
@@ -92,15 +92,15 @@ class UserController extends Controller
         ]);
         $user = User::where('email', $request->email)->first();
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return "User not valid please check the credentials";
+            return back()->with("message-error", "User not valid please check the credentials");
         } else {
             Session::put('normalUser', $user);
             if (Session::has('startQuizUrl')) {
                 $url = Session::get('startQuizUrl');
                 Session::forget('startQuizUrl');
-                return redirect($url);
+                return redirect($url)->with('message-success', "User Logged in successfully");
             } else {
-                return redirect('/');
+                return redirect('/')->with('message-success', "User Logged in successfully");
             }
         }
     }
@@ -192,7 +192,7 @@ class UserController extends Controller
         if ($user) {
             $user->active = '2';
             if ($user->save()) {
-                return redirect('/');
+                return redirect('/')->with('message-success', "User verified successfully");
             }
         }
     }
@@ -202,6 +202,7 @@ class UserController extends Controller
         $link = Crypt::encryptString($request->email);
         $link = url("/user-forgot-password/" . $link);
         Mail::to($request->email)->send(new UserForgotPassword($link));
+        return redirect('/')->with("message-success" , "A password reset link has been emailed to you. Please check your inbox");
     }
 
     public function userResetForgotPassword($email)
@@ -219,7 +220,7 @@ class UserController extends Controller
         $user = User::where('email', $request->email)->first();
         $user->password = Hash::make($request->password);
         if ($user->save()) {
-            return redirect('/user-login');
+            return redirect('/user-login')->with('message-success', "Password reset was successful and your new password is now active");
         }
     }
 }

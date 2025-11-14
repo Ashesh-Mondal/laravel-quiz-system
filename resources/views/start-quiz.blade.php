@@ -11,6 +11,9 @@
 
 <body>
     <x-user-navbar></x-user-navbar>
+    @if (session('message-success'))
+        <div class="text-green-800 bg-green-500 py-1 px-4 mt-4 rounded-xl text-center w-1/2 m-auto">{{ session('message-success') }}</div>
+    @endif
     <h1 class="mt-15 pb-5 text-4xl text-green-800 text-center font-bold">{{ $quizData->name }}</h1>
     <p class="text-center font-bold text-green-800 text-2xl mt-5">
         This quiz contains {{ $quizData->mcq->count() }} Questions and no limit to attempt this Quiz

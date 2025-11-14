@@ -13,6 +13,9 @@
     <x-user-navbar></x-user-navbar>
     <div class="min-h-screen">
         <div class="flex flex-col items-center">
+            @if (session('message-success'))
+                <div class="text-green-800 bg-green-500 py-1 px-4 mt-4 rounded-xl">{{ session('message-success') }}</div>
+            @endif
             <h1 class="pt-10 pb-5 text-4xl text-green-700 font-bold">Test Your Skill</h1>
             <form action="{{ route('search.quiz') }}" method="get">
                 <div class="flex shadow-lg rounded-xl px-7 py-3 mt-2 text-xl bg-white">

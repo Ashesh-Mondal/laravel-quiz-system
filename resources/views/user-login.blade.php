@@ -9,8 +9,17 @@
 
 <body class="bg-gray-100">
     <x-user-navbar></x-user-navbar>
-    <div class=" flex justify-center items-center min-h-screen">
+    <div class=" flex flex-col justify-center items-center min-h-screen">
         <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm">
+            @if (session('message-success'))
+                <div class="text-green-800 bg-green-500 py-1 px-4 my-4 rounded-xl">
+                    {{ session('message-success') }}
+                </div>
+            @elseif(session('message-error'))
+                <div class="text-red-800 bg-red-500 py-1 px-4 my-4 rounded-xl">
+                    {{ session('message-error') }}
+                </div>
+            @endif
             <h1 class="text-2xl mb-5 text-center">User Login Page</h1>
             @error('user')
                 <span class="inline-block text-red-600">{{ $message }}</span>
