@@ -92,7 +92,7 @@ class UserController extends Controller
         ]);
         $user = User::where('email', $request->email)->first();
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return "User nopt valid please check the credentials";
+            return "User not valid please check the credentials";
         } else {
             Session::put('normalUser', $user);
             if (Session::has('startQuizUrl')) {
@@ -206,7 +206,20 @@ class UserController extends Controller
 
     public function userResetForgotPassword($email)
     {
-        $orgEmail = Crypt::decryptString($email);
-        return $orgEmail;
+        $email = Crypt::decryptString($email);
+        return view('user-set-forget-password', compact('email'));
+    }
+
+    public function userSetForgotPassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required | email',
+            'password' => 'required|min:3|confirmed'
+        ]);
+        $user = User::where('email', $request->email)->first();
+        $user->password = Hash::make($request->password);
+        if ($user->save()) {
+            return redirect('/user-login');
+        }
     }
 }

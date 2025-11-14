@@ -40,6 +40,7 @@ Route::get('/verify-user/{email}', [UserController::class, 'verifyUser']);
 Route::view('user-forgot-password', 'user-forgot-password');
 Route::post('/user-forgot-password', [UserController::class, 'userForgotPassword'])->name('user.forgot.password');
 Route::get('/user-forgot-password/{email}', [UserController::class, 'userResetForgotPassword'])->name('user.reset.forgot.password');
+Route::post('/user-set-forgot-password', [UserController::class, 'userSetForgotPassword'])->name('user.set.forgot.password');
 
 Route::middleware('CheckUserAuth')->group(function () {
     Route::get('/mcq/{id}/{name}', [UserController::class, 'mcq'])->name('mcq.page');
