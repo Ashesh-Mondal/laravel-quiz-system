@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserForgotPassword;
 use App\Mail\VerifyUser;
 use App\Models\Category;
 use App\Models\Mcq;
@@ -49,7 +50,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
 
-        // Code for sending Verify Email
+        // * Code for sending Verify Email
 
         $link = Crypt::encryptString($user->email);
         $link = url("/verify-user/" . $link);
@@ -194,5 +195,18 @@ class UserController extends Controller
                 return redirect('/');
             }
         }
+    }
+
+    public function userForgotPassword(Request $request)
+    {
+        $link = Crypt::encryptString($request->email);
+        $link = url("/user-forgot-password/" . $link);
+        Mail::to($request->email)->send(new UserForgotPassword($link));
+    }
+
+    public function userResetForgotPassword($email)
+    {
+        $orgEmail = Crypt::decryptString($email);
+        return $orgEmail;
     }
 }

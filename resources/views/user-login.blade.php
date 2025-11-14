@@ -37,6 +37,9 @@
                     <button type="submit"
                         class="py-2 rounded-xl bg-blue-300 text-blue-900 hover:bg-blue-800 hover:text-white cursor-pointer mt-4 w-full transition-all ease-in-out duration-300">Login</button>
                 </div>
+                <a href="/user-forgot-password"
+                    class="text-green-500 mt-3 inline-block transition-colors hover:text-green-600 ease-in-out delay-200">Forget
+                    Password?</a>
             </form>
         </div>
     </div>
