@@ -25,6 +25,12 @@ class UserController extends Controller
         return view('welcome', compact('categoryList', 'quizList'));
     }
 
+    public function userCategoryList()
+    {
+        $categoryList = Category::withCount('quiz')->orderBy('quiz_count', 'desc')->paginate('3');
+        return view('user-category-list', compact('categoryList'));
+    }
+
     public function userQuizList($id)
     {
         $categoryName = Category::where('id', $id)->select('name')->first();

@@ -57,3 +57,5 @@ Route::middleware('CheckUserAuth')->group(function () {
     Route::post('/submit-next/{id}', [UserController::class, 'submitAndNext'])->name('submit.and.next');
     Route::get('/user-details', [UserController::class, 'userDetails'])->name('user.details');
 });
+
+Route::get('/user-category-list', [UserController::class, 'userCategoryList'])->name('user.category.list');

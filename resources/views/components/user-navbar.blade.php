@@ -5,7 +5,7 @@
         </div>
         <div class="space-x-2">
             <a class="user-nav-links" href="/">Home</a>
-            <a class="user-nav-links" href="/">Category</a>
+            <a class="user-nav-links" href="{{ route('user.category.list') }}">Category</a>
 
             @if (Session::has('normalUser'))
                 <a class="user-nav-links" href="{{ route('user.details') }}">Welcome
