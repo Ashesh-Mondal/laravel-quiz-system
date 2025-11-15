@@ -248,7 +248,7 @@ class UserController extends Controller
             Browsershot::html($html)->pdf()
         )->withHeaders([
             'Content-Type'=>'application/pdf',
-            'Content-disposition'=>'attachment;filename=quiz_certificate.pdf'
+            'Content-Disposition'=>'attachment;filename=quiz_certificate.pdf'
         ]);
     }
 }
