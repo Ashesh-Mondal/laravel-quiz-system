@@ -230,4 +230,11 @@ class UserController extends Controller
             return redirect('/user-login')->with('message-success', "Password reset was successful and your new password is now active");
         }
     }
+
+    public function certificate()
+    {
+        $data['quizName'] = str_replace("-", " ", ucwords(Session::get('currentQuiz')['quizName']));
+        $data['name'] = Session::get('normalUser')['name'];
+        return view('certificate',$data);
+    }
 }

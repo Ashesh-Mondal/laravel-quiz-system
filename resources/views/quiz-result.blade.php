@@ -15,8 +15,13 @@
         <h1 class="text-4xl text-green-700 font-bold text-center mt-18 mb-8">Quiz Result</h1>
         <div class="w-200 flex justify-center m-auto flex-col space-y-4">
             <h1 class="text-3xl text-green-700 text-center font-bold">
-                {{ $correctAnsCount }} out of {{count($quizResult)}} Correct
+                {{ $correctAnsCount }} out of {{ count($quizResult) }} Correct
             </h1>
+            @if (($correctAnsCount * 100) / count($quizResult) > 70)
+                <a href="{{ route('certificate') }}" class="text-center mb-4 text-lg text-green-600 font-bold">
+                    View and Download Certificate
+                </a>
+            @endif
             <ul class="border border-gray-200 rounded-xl">
                 <li>
                     <ul class="flex justify-between py-3 text-center font-bold">
