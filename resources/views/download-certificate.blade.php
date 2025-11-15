@@ -11,10 +11,6 @@
 
 <body>
     <div class="w-200 flex flex-col justify-center items-center min-h-screen m-auto">
-        <div class="flex justify-between w-full">
-            <a href="/" class="text-blue-700 font-bold text-xl curson-pointer">Back</a><a
-                href="{{ route('download.certificate') }}" class="text-green-700 font-bold text-xl curson-pointer">Download</a>
-        </div>
         <div class="w-full border-4 m-10 mb-0 bg-gray-100 border-indigo-900 p-10 text-center">
             <div class="flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"

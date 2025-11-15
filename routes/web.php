@@ -61,3 +61,4 @@ Route::middleware('CheckUserAuth')->group(function () {
 Route::get('/user-category-list', [UserController::class, 'userCategoryList'])->name('user.category.list');
 
 Route::get('/certificate', [UserController::class, 'certificate'])->name('certificate');
+Route::get("/download-certificate", [UserController::class, "downloadCertificate"])->name("download.certificate");

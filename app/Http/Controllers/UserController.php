@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Spatie\Browsershot\Browsershot;
 
 class UserController extends Controller
 {
@@ -235,6 +236,19 @@ class UserController extends Controller
     {
         $data['quizName'] = str_replace("-", " ", ucwords(Session::get('currentQuiz')['quizName']));
         $data['name'] = Session::get('normalUser')['name'];
-        return view('certificate',$data);
+        return view('certificate', $data);
+    }
+
+    public function downloadCertificate()
+    {
+        $data['quizName'] = str_replace("-", " ", ucwords(Session::get('currentQuiz')['quizName']));
+        $data['name'] = Session::get('normalUser')['name'];
+        $html = view('download-certificate', $data)->render();
+        return response(
+            Browsershot::html($html)->pdf()
+        )->withHeaders([
+            'Content-Type'=>'application/pdf',
+            'Content-disposition'=>'attachment;filename=quiz_certificate.pdf'
+        ]);
     }
 }
